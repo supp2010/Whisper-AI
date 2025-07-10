@@ -206,6 +206,10 @@ const Home = () => {
               transcriptionId={transcriptionId}
               fileName={uploadedFile?.name}
             />
+            <SummarySection
+              transcriptionId={transcriptionId}
+              onSummaryCreate={handleSummaryCreate}
+            />
             <ExportSection onExport={handleExport} />
           </>
         )}
