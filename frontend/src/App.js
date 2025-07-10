@@ -29,6 +29,7 @@ const Home = () => {
   const [processingStep, setProcessingStep] = useState("");
   const [transcriptionId, setTranscriptionId] = useState("");
   const [error, setError] = useState("");
+  const [summaryData, setSummaryData] = useState(null);
   const fileInputRef = useRef(null);
 
   const handleFileUpload = (file) => {
