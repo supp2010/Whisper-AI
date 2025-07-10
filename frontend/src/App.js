@@ -11,6 +11,7 @@ const {
   TranscriptionSection,
   LanguageSelector,
   ExportSection,
+  SummarySection,
   Footer,
   LoadingSpinner,
   ProgressBar
