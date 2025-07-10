@@ -59,6 +59,17 @@ class TranscriptionResponse(BaseModel):
     duration: Optional[float] = None
     timestamp: datetime
 
+class SummaryRequest(BaseModel):
+    transcription_id: str
+    summary_language: str
+
+class SummaryResponse(BaseModel):
+    id: str
+    transcription_id: str
+    summary: str
+    language: str
+    timestamp: datetime
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
