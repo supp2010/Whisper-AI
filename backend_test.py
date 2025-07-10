@@ -44,6 +44,7 @@ class WhisperAPITester:
             "summary_error_handling": False
         }
         self.created_transcription_id = None
+        self.created_summary_id = None
         
     def test_api_connectivity(self):
         """Test basic API connectivity"""
