@@ -114,6 +114,11 @@ const Home = () => {
     setUploadProgress(0);
     setProcessingStep("");
     setIsProcessing(false);
+    setSummaryData(null);
+  };
+
+  const handleSummaryCreate = (summary) => {
+    setSummaryData(summary);
   };
 
   const handleExport = (format) => {
