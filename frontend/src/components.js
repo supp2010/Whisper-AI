@@ -447,6 +447,8 @@ const SummarySection = ({ transcriptionId, onSummaryCreate }) => {
     </section>
   );
 };
+
+const Footer = () => {
   return (
     <footer className="bg-black/20 backdrop-blur-sm border-t border-purple-500/20 py-12">
       <div className="container mx-auto px-4">
