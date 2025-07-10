@@ -501,6 +501,10 @@ class WhisperAPITester:
             ("Transcribe Endpoint", self.test_transcribe_endpoint),
             ("Transcriptions List", self.test_transcriptions_list),
             ("Get Transcription", self.test_transcription_get),
+            ("Summary Creation", self.test_summary_creation),
+            ("Summary Retrieval", self.test_summary_retrieval),
+            ("Multilingual Summaries", self.test_summary_multilingual),
+            ("Summary Error Handling", self.test_summary_error_handling),
             ("Delete Transcription", self.test_transcription_delete),
         ]
         
