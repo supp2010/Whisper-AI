@@ -61,11 +61,47 @@ class WhisperAPITester:
     
     def create_test_audio_file(self, size_mb=1):
         """Create a small test audio file for testing"""
-        # Create a minimal WAV file header + some data
-        wav_header = b'RIFF\x24\x08\x00\x00WAVEfmt \x10\x00\x00\x00\x01\x00\x01\x00\x44\xac\x00\x00\x88X\x01\x00\x02\x00\x10\x00data\x00\x08\x00\x00'
+        # Create a proper WAV file with actual audio data (sine wave)
+        import struct
+        import math
         
-        # Add some audio data (silence)
-        audio_data = b'\x00' * (size_mb * 1024 * 1024 - len(wav_header))
+        sample_rate = 44100
+        duration = max(0.2, size_mb * 0.1)  # At least 0.2 seconds for OpenAI Whisper
+        num_samples = int(sample_rate * duration)
+        
+        # WAV file header
+        wav_header = struct.pack('<4sI4s4sIHHIIHH4sI',
+            b'RIFF',
+            36 + num_samples * 2,  # File size
+            b'WAVE',
+            b'fmt ',
+            16,  # PCM format chunk size
+            1,   # PCM format
+            1,   # Mono
+            sample_rate,
+            sample_rate * 2,  # Byte rate
+            2,   # Block align
+            16,  # Bits per sample
+            b'data',
+            num_samples * 2  # Data size
+        )
+        
+        # Generate sine wave audio data
+        audio_data = b''
+        for i in range(num_samples):
+            # 440 Hz sine wave
+            sample = int(32767 * 0.1 * math.sin(2 * math.pi * 440 * i / sample_rate))
+            audio_data += struct.pack('<h', sample)
+        
+        # If we need a larger file, pad with more audio
+        if size_mb > 1:
+            target_size = size_mb * 1024 * 1024
+            current_size = len(wav_header) + len(audio_data)
+            if current_size < target_size:
+                padding_needed = target_size - current_size
+                # Repeat the audio data to reach target size
+                repeat_count = (padding_needed // len(audio_data)) + 1
+                audio_data = (audio_data * repeat_count)[:padding_needed]
         
         temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.wav')
         temp_file.write(wav_header + audio_data)
