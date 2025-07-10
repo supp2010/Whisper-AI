@@ -297,7 +297,9 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Frontend Integration Testing"
+    - "Summary API Endpoint"
+    - "Summary Database Storage"
+    - "Summary Multilingual Support"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
