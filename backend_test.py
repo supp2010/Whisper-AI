@@ -36,7 +36,12 @@ class WhisperAPITester:
             "transcription_get": False,
             "transcription_delete": False,
             "database_storage": False,
-            "openai_integration": False
+            "openai_integration": False,
+            "summary_creation": False,
+            "summary_retrieval": False,
+            "summary_multilingual": False,
+            "summary_database_storage": False,
+            "summary_error_handling": False
         }
         self.created_transcription_id = None
         
